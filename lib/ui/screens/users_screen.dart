@@ -22,11 +22,11 @@ class UsersScreen extends StatelessWidget {
               SizedBox(height: 20.0),
               _buildChallengeWidget(challengeType: "Weekly Challenge", isCompleted: true, progressLevel: "0"),
               SizedBox(height: 20.0),
-              _buildChallengeWidget(challengeType: "2 weeks challenge", isCompleted: false, progressLevel: "21%"),
+              _buildChallengeWidget(challengeType: "2 weeks challenge", isCompleted: false, progressLevel: "21%", progress: 0.2),
               SizedBox(height: 20.0),
-              _buildChallengeWidget(challengeType: "Monthly challenge", isCompleted: false, progressLevel: "32%"),
+              _buildChallengeWidget(challengeType: "Monthly challenge", isCompleted: false, progressLevel: "32%", progress: 0.4),
               SizedBox(height: 20.0),
-              _buildChallengeWidget(challengeType: "Yearly challenge", isCompleted: false, progressLevel: "5%"),
+              _buildChallengeWidget(challengeType: "Yearly challenge", isCompleted: false, progressLevel: "5%", progress: 0.1),
             ],
           ),
         ),
@@ -34,7 +34,7 @@ class UsersScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildChallengeWidget({String challengeType, bool isCompleted, String progressLevel}) {
+  Widget _buildChallengeWidget({String challengeType, bool isCompleted, String progressLevel, double progress}) {
     return Stack(
       children: [
         Align(
@@ -60,7 +60,7 @@ class UsersScreen extends StatelessWidget {
                               children: [
                                 Text(
                                   challengeType,
-                                  style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
+                                  style: TextStyle(fontSize: 15.0, fontWeight: FontWeight.bold),
                                 ),
                                 SizedBox(width: 40.0),
                                 Visibility(
@@ -74,14 +74,14 @@ class UsersScreen extends StatelessWidget {
                               ],
                             ),
                           ),
-                          SizedBox(height: 8.0),
+                          SizedBox(height: 4.0),
                           Row(
                             children: [
-                              Text(isCompleted ? "Completed" : "Ongoing"),
+                              Text(isCompleted ? "Completed" : "Ongoing", style: TextStyle(fontSize: 12.0)),
                               SizedBox(width: 50.0),
                               Visibility(
                                 visible: isCompleted ? false : true,
-                                child: SizedBox(width: 120, child: LinearProgressIndicator(backgroundColor: Colors.blue, value: 2.0)),
+                                child: SizedBox(width: 120, child: LinearProgressIndicator(value: progress ?? 0.0)),
                               )
                             ],
                           )
